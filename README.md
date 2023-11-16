@@ -20,6 +20,7 @@ mkdir http1
 mkdir http2
 ``` 
 для запуска двух серверов на Python
+
 ---
 2. Установил `haproxy` 
 ```bash 
