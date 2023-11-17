@@ -128,7 +128,7 @@ listen web_tcp
 sudo nano /etc/haproxy/haproxy.cfg
 ```
  - и в пунктах `forntend` и `backend` изменяю некоторые настройки
-![Название скриншота 2](ссылка на скриншот 2)`
+![Change cfg](https://github.com/Lexacbr/haproxy/blob/main/img/change-cfg.png)
 ---
 3. Перезагружаю сервис `haproxy`
 ```bash
@@ -138,9 +138,14 @@ sudo systemctl reload haproxy
 ```bash
 curl -H 'Host:example.local' http://127.0.0.1:8088
 ```
+![Result balance](https://github.com/Lexacbr/haproxy/blob/main/img/res-bal.png)
+
 - и получаю балансировку по весу серверов: 
  - 4 запроса на сервер с портом 7777
  - 3 запроса на сервер с портом 9999
  - 2 запроса на сервер с портом 8888
+
+![Statistic](https://github.com/Lexacbr/haproxy/blob/main/img/stat-weight.png)
+
 ---
 
