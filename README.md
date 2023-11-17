@@ -124,33 +124,46 @@ listen web_tcp
 Что я делал:
 1. Я добавил 3-ю диркторию http3, в ней же создал файл index.html с вот таким содержанием: `Server 3 :7777` и запустил в ней Python-server
 2. Открываю через редактор `nano` конфигурационный файл haproxy 
+---
 ```bash
 sudo nano /etc/haproxy/haproxy.cfg
 ```
- - и в пунктах `forntend` и `backend` изменяю некоторые настройки
+---
+и в пунктах `forntend` и `backend` изменяю некоторые настройки
+
+---
 ![Change cfg](https://github.com/Lexacbr/haproxy/blob/main/img/change-cfg.png)
 ---
 3. Перезагружаю сервис `haproxy`
+---
 ```bash
 sudo systemctl reload haproxy
 ```
+---
 и отправляю запрос домену `example.local`
+
+---
 ```bash
 curl -H 'Host:example.local' http://127.0.0.1:8088
 ```
+---
 ![Result balance](https://github.com/Lexacbr/haproxy/blob/main/img/res-bal.png)
 
 и получаю балансировку по весу серверов: 
 - 4 запроса на сервер с портом 7777
 - 3 запроса на сервер с портом 9999
 - 2 запроса на сервер с портом 8888
-
+---
 Последнее обращение к серверу с портом 7777 - это уже заход на второй круг балансировки.
+
+---
 
 ![Statistic](https://github.com/Lexacbr/haproxy/blob/main/img/stat-weight.png)
 
 Если же сделать запрос без указания хоста указанного в настройках, то мы получим ошибку
 
 ![503](https://github.com/Lexacbr/haproxy/blob/main/img/error-503.png)
----
+
+- Так же добавляю [конфигурационный файл](https://github.com/Lexacbr/haproxy/blob/main/2/haproxy_1.cfg) с внесёнными правками.
+------
 
